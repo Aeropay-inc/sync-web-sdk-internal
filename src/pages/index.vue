@@ -4,12 +4,13 @@ defineOptions({
 })
 const userName = ref('')
 const password = ref('')
-// const user = useUserStore()
+const user = useUserStore()
 
-// const router = useRouter()
-// function go() {
-//     router.push(`/hi/${encodeURIComponent(name.value)}`)
-// }
+const router = useRouter()
+function goToDashboard() {
+  user.username = userName.value
+  router.push(`/home`)
+}
 
 useHead({
   title: () => 'Login',
@@ -31,7 +32,7 @@ useHead({
       placeholder="Password"
       autocomplete="false"
     />
-    <button m-3 text-sm btn :disabled="!userName || !password">
+    <button m-3 text-sm btn :disabled="!userName || !password" @click="goToDashboard">
       Submit
     </button>
   </div>

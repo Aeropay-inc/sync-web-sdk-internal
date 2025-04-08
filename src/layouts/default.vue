@@ -1,8 +1,8 @@
 <template>
   <main grid min-h-screen place-items-center>
-    <div auth-body >
+    <div auth-body>
       <RouterView />
-      <TheFooter />
+      <TheSupport />
     </div>
   </main>
 </template>
