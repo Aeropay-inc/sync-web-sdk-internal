@@ -2,58 +2,37 @@
 defineOptions({
   name: 'IndexPage',
 })
-const user = useUserStore()
-const name = ref(user.savedName)
+const userName = ref('')
+const password = ref('')
+// const user = useUserStore()
 
-const router = useRouter()
-function go() {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
-}
+// const router = useRouter()
+// function go() {
+//     router.push(`/hi/${encodeURIComponent(name.value)}`)
+// }
 
-const { t } = useI18n()
 useHead({
-  title: () => t('button.home'),
+  title: () => 'Login',
 })
 </script>
 
 <template>
-  <div>
-    <div text-4xl>
-      <div i-carbon-campsite inline-block />
+  <div grid gap-y-6>
+    <div place-self-center text-2xl>
+      TruSync Login
     </div>
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
-        Vitesse
-      </a>
-    </p>
-    <p>
-      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
-    </p>
-
-    <div py-4 />
-
     <TheInput
-      v-model="name"
-      :placeholder="t('intro.whats-your-name')"
+      v-model="userName"
+      placeholder="Username"
       autocomplete="false"
-      @keydown.enter="go"
     />
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
-
-    <div>
-      <button
-        m-3 text-sm btn
-        :disabled="!name"
-        @click="go"
-      >
-        {{ t('button.go') }}
-      </button>
-    </div>
+    <TheInput
+      v-model="password"
+      placeholder="Password"
+      autocomplete="false"
+    />
+    <button m-3 text-sm btn :disabled="!userName || !password">
+      Submit
+    </button>
   </div>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>

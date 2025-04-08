@@ -16,6 +16,7 @@ export default defineConfig({
   shortcuts: [
     ['btn', 'px-4 py-1 rounded inline-block bg-teal-700 text-white cursor-pointer !outline-none hover:bg-teal-800 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
     ['icon-btn', 'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
+    ['auth-body', 'max-w-sm w-full rounded-lg bg-gray-50 p-8 shadow-2xl dark:bg-gray-800'],
   ],
   presets: [
     presetUno(),

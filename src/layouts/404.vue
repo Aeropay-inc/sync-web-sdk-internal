@@ -1,8 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
-const { t } = useI18n()
 useHead({
-  title: () => t('not-found'),
+  title: () => '404',
 })
 </script>
 
@@ -14,7 +13,7 @@ useHead({
     <RouterView />
     <div>
       <button text-sm btn m="3 t8" @click="router.back()">
-        {{ t('button.back') }}
+        back
       </button>
     </div>
   </main>
