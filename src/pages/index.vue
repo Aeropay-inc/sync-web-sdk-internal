@@ -20,7 +20,7 @@ useHead({
 <template>
   <div grid gap-y-6>
     <div place-self-center text-2xl>
-      TruSync Login
+      SyncroVibe Login
     </div>
     <TheInput
       v-model="userName"
