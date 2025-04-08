@@ -6,5 +6,8 @@ export default antfu(
     unocss: true,
     formatters: true,
     pnpm: true,
+    rules: {
+      'no-console': 'off',
+    },
   },
 )

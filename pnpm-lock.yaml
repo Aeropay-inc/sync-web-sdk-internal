@@ -163,6 +163,9 @@ importers:
       '@vueuse/core':
         specifier: catalog:frontend
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
+      aerosync-web-sdk:
+        specifier: link:../aerosync-web-sdk
+        version: link:../aerosync-web-sdk
       nprogress:
         specifier: catalog:frontend
         version: 0.2.0
