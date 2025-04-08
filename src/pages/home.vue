@@ -10,7 +10,7 @@ useHead({
 
 <template>
   <div>
-    data incoming.....
+    data incoming..... 
   </div>
 </template>
 
@@ -18,4 +18,5 @@ useHead({
 meta:
     requireAuth: true
     layout: dashboard
+    title: TruSync
 </route>

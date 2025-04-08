@@ -1,12 +1,14 @@
 <template>
-  <main
-    px-4 py-10
-    text="center gray-700 dark:gray-200"
-  >
-    <RouterView />
-    <TheSupport />
-    <div mx-auto mt-5 text-center text-sm opacity-50>
-      [Homes Layout]
+  <main grid="~ rows-[auto_1fr]" h-full>
+    <TheHeader />
+    <div grid="~ flow-col cols-[auto_1fr]">
+      <TheSidebar />
+      <div grid="~ rows-[1fr_auto]">
+        <div p-4>
+          <RouterView />
+        </div>
+        <TheFooter />
+      </div>
     </div>
   </main>
 </template>

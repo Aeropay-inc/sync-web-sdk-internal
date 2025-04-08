@@ -32,7 +32,7 @@ useHead({
       placeholder="Password"
       autocomplete="false"
     />
-    <button m-3 text-sm btn :disabled="!userName || !password" @click="goToDashboard">
+    <button m-3 text-sm btn class="h-[42px]" :disabled="!userName || !password" @click="goToDashboard">
       Submit
     </button>
   </div>
