@@ -28,7 +28,7 @@ function save() {
       </div>
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-lg text-gray-700 font-medium dark:text-white>Environment<span class="text-red-500">*</span></label>
-        <TheInput v-model="widgetStore.widgetConfig.environment" />
+        <TheInput v-model="widgetStore.widgetConfig.environment" disabled cursor-not-allowed bg-gray-300 text-gray-500 />
       </div>
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-lg text-gray-700 font-medium dark:text-white>Configuration Id</label>

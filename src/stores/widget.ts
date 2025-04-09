@@ -6,7 +6,7 @@ export const useWidgetStore = defineStore('widget', () => {
   */
   const widgetConfig = reactive({
     token: '',
-    environment: '',
+    environment: 'QA',
     configurationId: '',
     aeroPassUserUuid: '',
   })
