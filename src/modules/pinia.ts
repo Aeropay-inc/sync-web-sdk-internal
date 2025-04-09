@@ -11,7 +11,7 @@ export const install: UserModule = ({ isClient, initialState, app }) => {
     pinia.state.value = (initialState.pinia) || {}
     const widgetStore = useWidgetStore()
     if (localStorage.getItem('widgetConfig'))
-      widgetStore.widgetConfig = JSON.parse(localStorage.getItem('widgetConfig')!)
+      widgetStore.updateWidgetConfig(JSON.parse(localStorage.getItem('widgetConfig')!))
   }
   else {
     initialState.pinia = pinia.state.value

@@ -8,6 +8,10 @@ const widgetStore = useWidgetStore()
 const toast = useToastify()
 
 function initAerosyncWidget() {
+  // mandatory params check
+  if (!widgetStore.isWidgetConfigSet)
+    return
+  // initialize sync widget
   initAeroSyncWidget({
     elementId: 'widgetId',
     embeddedBankView: {
@@ -38,7 +42,7 @@ onMounted(initAerosyncWidget)
 </script>
 
 <template>
-  <section h-full grid="~ flow-col" place-items-start justify-items-center gap-x-3>
+  <section v-if="widgetStore.isWidgetConfigSet" h-full grid="~ flow-col" place-items-start justify-items-center gap-x-3>
     <!-- select payment -->
     <div grid mt-3 gap-y-5>
       <div text-xl>
@@ -90,6 +94,11 @@ onMounted(initAerosyncWidget)
       <button class="h-48px w-250px" disabled place-self-center btn>
         Next: Review
       </button>
+    </div>
+  </section>
+  <section v-else grid h-full place-content-center>
+    <div max-w-2xl text-base>
+      Please ensure that you have set up your widget configuration in the settings page before proceeding to payment.
     </div>
   </section>
 </template>
