@@ -4,12 +4,8 @@
       <div i="carbon-sun dark:carbon-moon" />
     </button>
 
-    <a href="https://www.aeropay.com/legal/privacy-policy" target="_blank">
-      <div i-carbon:help />
-    </a>
-
     <a href="https://www.aeropay.com/support" target="_blank">
-      <div i-carbon:phone />
+      <div i-carbon:help />
     </a>
   </nav>
 </template>
