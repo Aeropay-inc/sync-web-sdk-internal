@@ -19,7 +19,7 @@ useHead({
 
 <template>
   <div grid gap-y-6>
-    <div place-self-center text-2xl>
+    <div place-self-center text-lg>
       SyncroVibe Login
     </div>
     <TheInput

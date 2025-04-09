@@ -3,7 +3,7 @@ import type { WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk'
 import { AerosyncEnvironment, initAeroSyncWidget } from 'aerosync-web-sdk'
 import { onMounted } from 'vue'
 
-function openAerosyncWidget() {
+function initAerosyncWidget() {
   initAeroSyncWidget({
     elementId: 'widgetId',
     embeddedBankView: {
@@ -31,30 +31,30 @@ function openAerosyncWidget() {
   })
 // widgetRef.launch();
 }
-onMounted(openAerosyncWidget)
+onMounted(initAerosyncWidget)
 </script>
 
 <template>
   <section h-full grid="~ flow-col" place-items-start justify-items-center gap-x-3>
     <!-- select payment -->
-    <div grid mt-15 gap-y-5>
-      <div text-4xl>
+    <div grid mt-3 gap-y-5>
+      <div text-xl>
         Select a payment method
       </div>
       <div grid="~ flow-col cols-[auto_auto_1fr] gap-x-2">
         <input type="radio" checked>
         <div i-carbon:piggy-bank place-self-center />
-        <div text-lg>
+        <div text-sm>
           Pay by bank instantly and save 3%
         </div>
       </div>
-      <div id="embeddedId" h-sm w-xl />
+      <div id="embeddedId" h-sm w-xl border />
       <div id="widgetId" />
 
       <div grid="~ flow-col cols-[auto_auto_1fr] gap-x-2">
         <input type="radio" disabled>
         <div i-carbon:money place-self-center />
-        <div text-lg>
+        <div text-base>
           Credit/Debit card
         </div>
       </div>

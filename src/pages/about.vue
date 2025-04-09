@@ -9,10 +9,14 @@ useHead({
 </script>
 
 <template>
-      <section h-full grid place-content-center px-6>
-    <div max-w-2xl grid place-items-center>
-      <h1 text-4xl sm:text-5xl font-extrabold leading-tight mb-4>About Us</h1>
-      <p text-lg sm:text-xl mb-6 text-align-center>At SyncroVibe, we believe in the power of technology to connect people and enhance the way we interact with the world. Our team of innovators, designers, and engineers work tirelessly to create cutting-edge solutions that make a lasting impact. We're not just building products; we're shaping the future.</p>
+  <section grid h-full place-content-center px-6>
+    <div grid max-w-2xl place-items-center>
+      <h1 mb-4 text-4xl font-extrabold leading-tight sm:text-4xl>
+        About Us
+      </h1>
+      <p mb-6 text-lg sm:text-xl>
+        At SyncroVibe, we believe in the power of technology to connect people and enhance the way we interact with the world. Our team of innovators, designers, and engineers work tirelessly to create cutting-edge solutions that make a lasting impact. We're not just building products; we're shaping the future.
+      </p>
     </div>
   </section>
 </template>
@@ -21,5 +25,5 @@ useHead({
 meta:
     requireAuth: true
     layout: dashboard
-    title: SyncroVibe 
+    title: SyncroVibe
 </route>

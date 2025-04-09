@@ -12,11 +12,17 @@ function go() {
 </script>
 
 <template>
-  <section h-full grid place-content-center px-6>
-    <div max-w-2xl grid place-items-center>
-      <h1 text-4xl sm:text-5xl font-extrabold leading-tight mb-4>Welcome to SyncroVibe</h1>
-      <p text-lg sm:text-xl mb-6 text-align-center>We're a forward-thinking company focused on bringing innovative solutions to the digital world. Join us as we sync the vibe for a better tomorrow.</p>
-      <button bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg text-xl transition duration-300 @click="go" place-self-center>Learn More</button>
+  <section grid h-full place-content-center px-6>
+    <div grid max-w-2xl place-items-center>
+      <h1 mb-4 text-4xl font-extrabold leading-tight sm:text-4xl>
+        Welcome to SyncroVibe
+      </h1>
+      <p mb-6 text-lg sm:text-xl>
+        We're a forward-thinking company focused on bringing innovative solutions to the digital world. Join us as we sync the vibe for a better tomorrow.
+      </p>
+      <button place-self-center rounded-lg bg-indigo-500 px-6 py-2 text-xl text-white transition @click="go" duration-300 hover:bg-indigo-700>
+        Learn More
+      </button>
     </div>
   </section>
 </template>
@@ -25,5 +31,5 @@ function go() {
 meta:
     requireAuth: true
     layout: dashboard
-    title: SyncroVibe 
+    title: SyncroVibe
 </route>
