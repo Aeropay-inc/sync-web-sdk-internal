@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { toast } from 'vue3-toastify'
+import { useToastify } from '~/composables/toast'
 import { useWidgetStore } from '~/stores/widget'
 
 const widgetStore = useWidgetStore()
+const toast = useToastify()
 
 function save() {
   localStorage.setItem('widgetConfig', JSON.stringify(widgetStore.widgetConfig))
-  toast.success('Configuration updated successfully!', {
-    autoClose: 1000,
-    theme: isDark.value ? 'dark' : 'light',
-
-  })
+  toast.success('Configuration updated successfully!')
 }
 </script>
 
@@ -38,10 +35,10 @@ function save() {
         <TheInput v-model="widgetStore.widgetConfig.configurationId" />
       </div>
       <div grid="~ flow-col" auto-cols-fr>
-        <label block text-lg text-gray-700 font-medium dark:text-white>AeroPassUser Id</label>
+        <label block text-lg text-gray-700 font-medium dark:text-white>AeroPassUser Id<span class="text-red-500">*</span></label>
         <TheInput v-model="widgetStore.widgetConfig.aeroPassUserUuid" />
       </div>
-      <button class="h-[38px] w-[150px]" place-self-center text-base btn @click="save">
+      <button mt-3 class="h-[38px] w-[150px]" place-self-center text-base btn @click="save">
         Save
       </button>
     </div>
@@ -52,5 +49,5 @@ function save() {
     meta:
         requireAuth: true
         layout: dashboard
-        title: Controls
+        title: Settings
 </route>

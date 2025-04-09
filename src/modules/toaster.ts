@@ -6,5 +6,6 @@ import 'vue3-toastify/dist/index.css'
 export const install: UserModule = ({ app }) => {
   app.use(Vue3Toastify, {
     autoClose: 3000,
+    theme: isDark.value ? 'dark' : 'light',
   } as ToastContainerOptions)
 }

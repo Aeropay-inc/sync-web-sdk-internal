@@ -10,25 +10,9 @@ export const useWidgetStore = defineStore('widget', () => {
     configurationId: '',
     aeroPassUserUuid: '',
   })
-  function updateToken(value: string) {
-    widgetConfig.token = value
-  }
-  function updateEnvironment(value: string) {
-    widgetConfig.environment = value
-  }
-  function updateConfigurationId(value: string) {
-    widgetConfig.configurationId = value
-  }
-  function updateAeroPassUserUuid(value: string) {
-    widgetConfig.aeroPassUserUuid = value
-  }
 
   return {
     widgetConfig,
-    updateToken,
-    updateEnvironment,
-    updateConfigurationId,
-    updateAeroPassUserUuid,
   }
 })
 

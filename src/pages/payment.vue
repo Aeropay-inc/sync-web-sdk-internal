@@ -2,6 +2,10 @@
 import type { WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk'
 import { AerosyncEnvironment, initAeroSyncWidget } from 'aerosync-web-sdk'
 import { onMounted } from 'vue'
+import { useToastify } from '~/composables/toast'
+
+const widgetStore = useWidgetStore()
+const toast = useToastify()
 
 function initAerosyncWidget() {
   initAeroSyncWidget({
@@ -11,25 +15,24 @@ function initAerosyncWidget() {
     },
     iframeTitle: 'Connect',
     environment: AerosyncEnvironment.Qa,
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOTQ4YTNkMGMzNzY0NmZhYjY1M2RmNjgyM2JmMTZmNCIsInVzZXJQYXNzd29yZCI6IjhiMzJhMTlhNDNkNjQyYTg5YjE3ZGFiMmE5MzEzOGE5IiwiQ2xpZW50SWQiOiJlMDU5YzE2OS1lNWRkLTRlN2UtYmY5ZC0xZWU3NWEzOTU0ZjMiLCJDbGllbnROYW1lIjoiU3ludGhldGljIFRlc3RpbmciLCJzZXNzaW9uSWQiOiIxNDQ2YTMxZjQ3YTY0NjcyYTcwZWJkZjA0M2RhMWE1MCJ9.8tPsVqHmn_Qy_KzpCGxV3GQSQniwbFf36BGvrrj8HAI',
-    aeroPassUserUuid: 'aeroPassUserUuid',
+    token: widgetStore.widgetConfig.token,
+    aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
     onEvent(event: WidgetEventType) {
-      console.log('onEvent', event)
+      toast.info(`Sync onevent: ${event.payload.pageTitle}`)
     },
     onLoad() {
-      console.log('onLoad')
+      toast.info('Sync onload')
     },
     onSuccess(event: WidgetEventSuccessType) {
-      console.log('onSuccess', event)
+      toast.success(`Sync onsuccess: ${JSON.stringify(event)}`)
     },
     onClose() {
-      console.log('onClose')
+      toast.info(`Sync onclose`)
     },
     onError(event: string) {
       console.log('onError', event)
     },
   })
-// widgetRef.launch();
 }
 onMounted(initAerosyncWidget)
 </script>
