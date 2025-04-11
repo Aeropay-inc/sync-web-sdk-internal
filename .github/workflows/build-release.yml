@@ -60,5 +60,5 @@ jobs:
           rm -rf dist/
       - name: Package and Upload Artifact
         run: |
-          cd ./target && zip -r latest.zip .
-          aws s3 cp latest.zip s3://sync-web-sdk-internal-us-east-1-build-artifacts/latest-release.zip
+          cd ./target && zip -r latest-release.zip .
+          aws s3 cp latest-release.zip s3://sync-web-sdk-internal-us-east-1-build-artifacts/latest-release.zip
