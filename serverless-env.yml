@@ -1,6 +1,34 @@
+default:
+  certificateArn: arn:aws:acm:us-east-1:533267275668:certificate/097a62d6-bb77-4711-a3d7-dfd7cde87ffb
+  certificateName: '*.demo-sync.aero.inc'
+  certificateAltName: demo.aerosync.com
+  domainName: ${self:provider.stage}.demo-sync.aero.inc
+  hostedZoneId: Z03519202P7COFN8LJ6U7
+
 qa:
   certificateArn: arn:aws:acm:us-east-1:339712963382:certificate/963a2803-98dc-442f-8c26-7d1534943a4b
-  certificateName: qa-demo.aero.inc
-  certificateAltName: demo.aerosync.com
-  domainName: qa-demo.aero.inc
+  certificateName: qa-demo-sync.aero.inc
+  certificateAltName: qa-demo.aerosync.com
+  domainName: qa-demo-sync.aero.inc
+  hostedZoneId: Z03519221Q4T14VSWX94U
+
+staging:
+  certificateArn: arn:aws:acm:us-east-1:339712963382:certificate/963a2803-98dc-442f-8c26-7d1534943a4b
+  certificateName: qa-demo-sync.aero.inc
+  certificateAltName: qa-demo.aerosync.com
+  domainName: qa-demo-sync.aero.inc
+  hostedZoneId: Z03519221Q4T14VSWX94U
+
+sandbox:
+  certificateArn: arn:aws:acm:us-east-1:339712963382:certificate/963a2803-98dc-442f-8c26-7d1534943a4b
+  certificateName: qa-demo-sync.aero.inc
+  certificateAltName: qa-demo.aerosync.com
+  domainName: qa-demo-sync.aero.inc
+  hostedZoneId: Z03519221Q4T14VSWX94U
+
+prod:
+  certificateArn: arn:aws:acm:us-east-1:339712963382:certificate/963a2803-98dc-442f-8c26-7d1534943a4b
+  certificateName: qa-demo-sync.aero.inc
+  certificateAltName: qa-demo.aerosync.com
+  domainName: qa-demo-sync.aero.inc
   hostedZoneId: Z03519221Q4T14VSWX94U
