@@ -38,7 +38,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::${{ secrets.SYNC_OPS_ACCOUNT_ID }}:role/sync-web-sdk-internal-us-east-1-github-role
+          role-to-assume: arn:aws:iam::654654287847:role/sync-web-sdk-internal-us-east-1-github-role
           role-session-name: pipelines
 
       - name: Build artifact
