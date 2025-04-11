@@ -1,0 +1,21 @@
+service: sync-web-sdk-internal
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  region: ${opt:region}
+
+custom:
+  stage: ${opt:stage, 'dev'}
+  settings: ${file(serverless-env.yml):${self:custom.stage}, file(serverless-env.yml):default}
+  domainName: ${self:custom.settings.domainName}
+  customCertificate:
+    certificateName: ${self:custom.settings.certificateName}
+    hostedZoneId: ${self:custom.settings.hostedZoneId}
+    subjectAlternativeNames:
+      - ${self:custom.settings.certificateAltName}
+
+resources:
+  - ${file(resources/cloudfront.yml)}
+  - ${file(resources/route53.yml)}
+  - ${file(resources/s3.yml)}

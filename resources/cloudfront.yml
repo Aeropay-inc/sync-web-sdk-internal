@@ -1,0 +1,126 @@
+Resources:
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Access S3 bucket content only through CloudFront
+
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - ${self:custom.domainName}
+          - ${self:custom.settings.certificateAltName}
+        Enabled: true
+        DefaultRootObject: index.html
+        Origins:
+          - DomainName: !GetAtt Bucket.DomainName
+            Id: S3Origin
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity.Id}'
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+          FunctionAssociations:
+            - EventType: viewer-response
+              FunctionARN: !GetAtt CorsConfigFunction.FunctionARN
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        ViewerCertificate:
+          AcmCertificateArn: ${self:custom.settings.certificateArn}
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+
+  CorsTable:
+    Type: AWS::CloudFront::KeyValueStore
+    Properties:
+      Name: ${self:service}-cors-config-${self:custom.stage}
+
+  CorsConfigFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: ${self:service}-cors-config-${self:custom.stage}
+      AutoPublish: true
+      FunctionConfig:
+        Comment: ${self:service}-cors-config-${self:custom.stage}
+        Runtime: cloudfront-js-2.0
+        KeyValueStoreAssociations:
+          - KeyValueStoreARN: !GetAtt CorsTable.Arn
+      FunctionCode: !Sub |
+        import cf from 'cloudfront';
+
+        const kvsId = '${CorsTable.Id}';
+
+        async function handler(event) {
+            let kvsHandle;
+            let allowedOrigins = [];
+
+            try {
+                kvsHandle = await cf.kvs(kvsId);
+                allowedOrigins = await kvsHandle.get('allowed_origins').catch(() => "[]");
+            } catch (error) {
+                allowedOrigins = "[]";
+            }
+
+            var response = event.response;
+            var headers = response.headers;
+            var request = event.request;
+            var requestHeaders = request.headers;
+
+            var originHeader = requestHeaders.origin ? requestHeaders.origin.value.trim() : "None";
+            var refererHeader = requestHeaders.referer ? requestHeaders.referer.value.trim() : "None";
+            var userAgentHeader = requestHeaders['user-agent'] ? requestHeaders['user-agent'].value.toLowerCase().trim() : "None";
+
+            var requestURI = request.uri ? request.uri.trim() : "None";
+
+            if (requestURI === "/" || requestURI.endsWith(".html")) {
+                console.log(JSON.stringify({
+                    level: "INFO",
+                    message: "Request Received",
+                    origin: originHeader || null,
+                    referer: refererHeader || null,
+                    userAgent: userAgentHeader || null,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+
+            var isAllowed = false;
+            var isMobile = false;
+
+            // Detect mobile web views
+            if (userAgentHeader && / wv|version\/\d+\.\d+ mobile safari|android|iphone|ipad/.test(userAgentHeader)) {
+                isMobile = true;
+            }
+
+            if (allowedOrigins) {
+                try {
+                    allowedOrigins = JSON.parse(allowedOrigins);
+                } catch (error) {
+                    allowedOrigins = [];
+                }
+
+                if (Array.isArray(allowedOrigins) && allowedOrigins.some(origin => originHeader.includes(origin))) {
+                    isAllowed = true;
+                } else if (refererHeader !== "None") {
+                    if (Array.isArray(allowedOrigins) && allowedOrigins.some(origin => refererHeader.includes(origin))) {
+                        isAllowed = true;
+                    }
+                }
+            }
+
+            if (!isAllowed && !isMobile) {
+                // headers["x-frame-options"] = { value: "DENY" }; // Uncomment this for start DENY not allowed origins
+            }
+
+            return response;
+        }

@@ -1,0 +1,6 @@
+default:
+  certificateArn: arn:aws:acm:us-east-1:533267275668:certificate/097a62d6-bb77-4711-a3d7-dfd7cde87ffb
+  certificateName: '*.dev-sync.aero.inc'
+  certificateAltName: dev.aerosync.com
+  domainName: ${self:provider.stage}.dev-sync.aero.inc
+  hostedZoneId: Z03519202P7COFN8LJ6U7

@@ -37,7 +37,7 @@ function save() {
       </div>
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-base text-gray-700 font-medium dark:text-white>AeroPassUser Id</label>
-        <TheInput v-model="widgetConfigForm.aeroPassUserUuid" />
+        <TheInput v-model="widgetConfigForm.aeroPassUserUuid" disabled cursor-not-allowed bg-gray-300 text-gray-500 />
       </div>
       <button mt-3 class="h-[38px] w-[150px]" place-self-center text-base btn @click="save">
         Save

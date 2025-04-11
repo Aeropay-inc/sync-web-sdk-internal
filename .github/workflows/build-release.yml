@@ -1,0 +1,58 @@
+name: Build - Release
+
+on:
+  push:
+    branches:
+      - release/**
+      - hotfix/**
+      - 868822rze
+
+jobs:
+
+  buildAndTest:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::${{ secrets.SYNC_OPS_ACCOUNT_ID }}:role/sync-web-sdk-internal-us-east-1-github-role
+          role-session-name: pipelines
+
+      - name: Build artifact
+        run: |
+          mkdir ./target
+          mkdir ./target/qa
+          sudo cp serverless.yml ./target/
+          sudo cp serverless-env.yml ./target/ 2>/dev/null || :
+          sudo cp package.json ./target/
+          sudo cp -r resources/ ./target/
+          pnpm build
+          cp -r dist/ ./target/qa
+          rm -rf dist/
+      - name: Package and Upload Artifact
+        run: |
+          cd ./target && zip -r latest.zip .
+          aws s3 cp latest.zip s3://sync-web-sdk-internal-us-east-1-build-artifacts/latest-release.zip
