@@ -45,12 +45,18 @@ jobs:
         run: |
           mkdir ./target
           mkdir ./target/qa
+          mkdir ./target/staging
+          mkdir ./target/sandbox
+          mkdir ./target/prod
           sudo cp serverless.yml ./target/
           sudo cp serverless-env.yml ./target/ 2>/dev/null || :
           sudo cp package.json ./target/
           sudo cp -r resources/ ./target/
           pnpm build
           cp -r dist/ ./target/qa
+          cp -r dist/ ./target/staging
+          cp -r dist/ ./target/sandbox
+          cp -r dist/ ./target/prod
           rm -rf dist/
       - name: Package and Upload Artifact
         run: |
