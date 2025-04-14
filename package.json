@@ -20,7 +20,7 @@
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",
-    "aerosync-web-sdk": "file:aerosync-web-sdk-2.1.0.tgz",
+    "aerosync-web-sdk": "file:aerosync-web-sdk-1.1.1.tgz",
     "nprogress": "catalog:frontend",
     "pinia": "catalog:frontend",
     "vue": "catalog:frontend",
