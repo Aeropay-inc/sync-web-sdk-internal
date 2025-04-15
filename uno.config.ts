@@ -15,7 +15,10 @@ import {
 export default defineConfig({
   theme: {
     breakpoints: {
-      sm: '480px',
+      xs: '265px',
+      ssm: '295px',
+      sm: '541px',
+      mmd: '576px',
       md: '768px',
       lg: '1024px',
       xl: '1315px',

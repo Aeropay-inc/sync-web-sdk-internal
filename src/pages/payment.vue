@@ -6,7 +6,7 @@ import { useToastify } from '~/composables/toast'
 
 const widgetStore = useWidgetStore()
 const toast = useToastify()
-const isSyncReady = ref(false)
+const isSyncReady = ref(true)
 let widgetControls: AerosyncWidget | null = null
 
 function widgetRef() {
@@ -54,23 +54,23 @@ onUnmounted(() => {
   <section grid h-full>
     <div v-if="widgetStore.isWidgetConfigSet" grid>
       <TheSpinner v-if="!isSyncReady" h-10 w-10 place-self-center />
-      <div v-show="isSyncReady" grid place-items-start justify-items-center gap-x-3 sm:grid-flow-row xl:grid-flow-col>
+      <div v-show="isSyncReady" grid place-items-start gap-x-3 sm:grid-flow-row xl:grid-flow-col mmd:justify-items-center>
         <!-- select payment -->
-        <div grid mt-3 gap-y-5>
+        <div grid mt-3 w-full gap-y-5 md:w-auto>
           <div text-xl>
             Select a payment method
           </div>
-          <div grid="~ flow-col cols-[auto_auto_1fr] gap-x-2">
+          <div grid="~ flow-row gap-x-2" xs:grid-flow-col class="xs:cols-[auto_auto_1fr]">
             <input type="radio" checked>
             <div i-carbon:piggy-bank place-self-center />
             <div text-sm>
               Pay by bank instantly and save 3%
             </div>
           </div>
-          <div id="embeddedId" h-sm w-xl border />
+          <div id="embeddedId" h-sm w-full border md:w-xl />
           <div id="widgetId" />
 
-          <div grid="~ flow-col cols-[auto_auto_1fr] gap-x-2">
+          <div grid="~ flow-row gap-x-2" xs:grid-flow-col class="xs:cols-[auto_auto_1fr]">
             <input type="radio" disabled>
             <div i-carbon:money place-self-center />
             <div text-base>
@@ -80,8 +80,8 @@ onUnmounted(() => {
         </div>
 
         <!-- product -->
-        <div grid mt-15 gap-x-2 gap-y-4>
-          <div grid="~ flow-col" gap-x-3>
+        <div grid mt-15 w-full gap-x-2 gap-y-4 mmd:w-auto>
+          <div grid="~ flow-row" gap-x-3 sm:grid-flow-col>
             <div place-self-center>
               <div text-xl>
                 2023 Cadillac CT5
@@ -93,17 +93,17 @@ onUnmounted(() => {
                 Sedan Gas
               </div>
             </div>
-            <img src="/assets/images/cadillac.png" alt="product" max-w-xs>
+            <img src="/assets/images/cadillac.png" alt="product" w-150px place-self-center sm:w-200px>
           </div>
 
-          <div grid="~ flow-col">
+          <div grid="~ flow-row" sm:grid-flow-col>
             <div i-carbon:vehicle-api />
             <div text-sm>
               Full liability insured motor vehicles - Collisions and property coverage
             </div>
           </div>
 
-          <button class="h-48px w-250px" disabled place-self-center btn>
+          <button class="h-48px w-full" disabled place-self-center btn ssm:w-250px>
             Next: Review
           </button>
         </div>
