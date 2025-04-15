@@ -54,7 +54,7 @@ onUnmounted(() => {
   <section grid h-full>
     <div v-if="widgetStore.isWidgetConfigSet" grid>
       <TheSpinner v-if="!isSyncReady" h-10 w-10 place-self-center />
-      <div v-show="isSyncReady" grid="~ flow-col" place-items-start justify-items-center gap-x-3>
+      <div v-show="isSyncReady" grid place-items-start justify-items-center gap-x-3 sm:grid-flow-row xl:grid-flow-col>
         <!-- select payment -->
         <div grid mt-3 gap-y-5>
           <div text-xl>
