@@ -1,5 +1,14 @@
+<script setup lang="ts">
+import { useThemeStore } from '~/stores/theme'
+
+const { updateSideBarState } = useThemeStore()
+</script>
+
 <template>
-  <aside w-2xs w-48 bg-gray-300 p-4 text-gray-900 dark:bg-gray-800 dark:text-white>
+  <aside bg-gray-300 p-4 text-gray-900 dark:bg-gray-800 dark:text-white>
+    <div grid>
+      <div i-carbon:drill-back cursor-pointer place-self-end @click="updateSideBarState()" />
+    </div>
     <ul mt-8>
       <li>
         <div grid="~ flow-col cols-[auto_1fr]">
