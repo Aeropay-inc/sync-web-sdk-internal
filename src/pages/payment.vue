@@ -6,7 +6,7 @@ import { useToastify } from '~/composables/toast'
 
 const widgetStore = useWidgetStore()
 const toast = useToastify()
-const isSyncReady = ref(true)
+const isSyncReady = ref(false)
 let widgetControls: AerosyncWidget | null = null
 
 function widgetRef() {
@@ -54,9 +54,9 @@ onUnmounted(() => {
   <section grid h-full>
     <div v-if="widgetStore.isWidgetConfigSet" grid>
       <TheSpinner v-if="!isSyncReady" h-10 w-10 place-self-center />
-      <div v-show="isSyncReady" grid place-items-start gap-x-3 sm:grid-flow-row xl:grid-flow-col mmd:justify-items-center>
+      <div v-show="isSyncReady" mdLite:justify-items-center grid place-items-start gap-x-3 sm:grid-flow-row xl:grid-flow-col>
         <!-- select payment -->
-        <div grid mt-3 w-full gap-y-5 md:w-auto>
+        <div mdLite:w-auto grid mt-3 w-full gap-y-5>
           <div text-xl>
             Select a payment method
           </div>
@@ -67,7 +67,7 @@ onUnmounted(() => {
               Pay by bank instantly and save 3%
             </div>
           </div>
-          <div id="embeddedId" h-sm w-full border md:w-xl />
+          <div id="embeddedId" mdLite:w-xl h-sm w-full border />
           <div id="widgetId" />
 
           <div grid="~ flow-row gap-x-2" xs:grid-flow-col class="xs:cols-[auto_auto_1fr]">
@@ -80,7 +80,7 @@ onUnmounted(() => {
         </div>
 
         <!-- product -->
-        <div grid mt-15 w-full gap-x-2 gap-y-4 mmd:w-auto>
+        <div mdLite:w-auto grid mt-15 w-full gap-x-2 gap-y-4>
           <div grid="~ flow-row" gap-x-3 sm:grid-flow-col>
             <div place-self-center>
               <div text-xl>
@@ -96,14 +96,14 @@ onUnmounted(() => {
             <img src="/assets/images/cadillac.png" alt="product" w-150px place-self-center sm:w-200px>
           </div>
 
-          <div grid="~ flow-row" sm:grid-flow-col>
+          <div grid="~ flow-row" gap-x-2 sm:grid-flow-col>
             <div i-carbon:vehicle-api />
             <div text-sm>
               Full liability insured motor vehicles - Collisions and property coverage
             </div>
           </div>
 
-          <button class="h-48px w-full" disabled place-self-center btn ssm:w-250px>
+          <button class="h-48px w-full" disabled smLite:w-250px place-self-center btn>
             Next: Review
           </button>
         </div>
