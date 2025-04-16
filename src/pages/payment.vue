@@ -70,7 +70,7 @@ onUnmounted(() => {
               Pay by bank instantly and save 3%
             </div>
           </div>
-          <div id="embeddedId" mdLite:w-xl h-sm w-full border />
+          <div id="embeddedId" mdLite:w-xl h-sm w-full border border-gray-300 dark:border-gray-700 />
           <div id="widgetId" />
 
           <div grid="~ flow-row gap-x-2" xs:grid-flow-col class="xs:cols-[auto_auto_1fr]">
