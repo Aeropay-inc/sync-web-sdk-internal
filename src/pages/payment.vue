@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AerosyncWidget, WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk'
-import { AerosyncEnvironment, initAeroSyncWidget, WidgetThemeType } from 'aerosync-web-sdk'
+import { AerosyncEnvironment, initAeroSyncWidget } from 'aerosync-web-sdk'
 import { onMounted, onUnmounted } from 'vue'
 import { useToastify } from '~/composables/toast'
 
@@ -22,7 +22,7 @@ function widgetRef() {
     environment: AerosyncEnvironment.Qa,
     token: widgetStore.widgetConfig.token,
     aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
-    theme: WidgetThemeType.LIGHT,
+    theme: isDark.value ? 'dark' : 'light',
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
     },
@@ -40,6 +40,9 @@ function widgetRef() {
     },
   })
 }
+watch(isDark, (newValue) => {
+  widgetControls?.toggleTheme(newValue ? 'dark' : 'light')
+})
 onMounted(() => {
   if (widgetStore.isWidgetConfigSet) {
     widgetRef()
