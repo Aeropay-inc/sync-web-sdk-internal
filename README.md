@@ -4,6 +4,12 @@ Sync web sdk internal test application
 
 ## Usage
 
+### Clone to local
+
+git clone https://github.com/Aeropay-inc/sync-web-sdk-internal.git
+cd sync-web-sdk-internal
+pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
+
 ### Development
 
 Just run and visit http://localhost:3333
