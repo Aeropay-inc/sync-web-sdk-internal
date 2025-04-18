@@ -2405,7 +2405,7 @@ packages:
     hasBin: true
 
   aerosync-web-sdk@file:aerosync-web-sdk-1.1.1.tgz:
-    resolution: {integrity: sha512-DdT6Ycb6mraJM/BUUaNKnFmI5U+th/IS0NNUDKyNU4t5FLzc7Q34r+BnGZJn0infSthc3VSGoZnr5FIcLcHabA==, tarball: file:aerosync-web-sdk-1.1.1.tgz}
+    resolution: {integrity: sha512-DQ/kXwuYYlVmFDKigyvRwjpg06i+3vsIB8/LFFS0egSKDjVXoil2nNzrKcbPTdgIOIiiZl4HaJf2Rrhau26vLQ==, tarball: file:aerosync-web-sdk-1.1.1.tgz}
     version: 1.1.1
 
   agent-base@7.1.3:
