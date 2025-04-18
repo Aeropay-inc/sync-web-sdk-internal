@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { AerosyncEnvironment } from 'aerosync-web-sdk'
 import { useToastify } from '~/composables/toast'
 import { useWidgetStore } from '~/stores/widget'
 
 const widgetStore = useWidgetStore()
 const toast = useToastify()
+const envOptions = Object.values(AerosyncEnvironment)
 const widgetConfigForm = ref({ ...widgetStore.widgetConfig })
 function save() {
   widgetStore.updateWidgetConfig(widgetConfigForm.value)
@@ -29,8 +31,16 @@ function save() {
       </div>
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-base text-gray-700 font-medium dark:text-white>Environment<span class="text-red-500">*</span></label>
-        <TheInput v-model="widgetConfigForm.environment" disabled cursor-not-allowed bg-gray-300 text-gray-500 />
+        <select
+          v-model="widgetConfigForm.environment" rounded border="~ rounded gray-200 dark:gray-700" bg="transparent" p="x-4 y-2"
+          outline="none active:none"
+        >
+          <option v-for="env in envOptions" :key="env" :value="env" :selected="env === AerosyncEnvironment.Qa" text-gray-500>
+            {{ env }}
+          </option>
+        </select>
       </div>
+
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-base text-gray-700 font-medium dark:text-white>Configuration Id</label>
         <TheInput v-model="widgetConfigForm.configurationId" />

@@ -21,7 +21,7 @@ function widgetRef() {
       // height: '348px'
     },
     iframeTitle: 'Connect',
-    environment: AerosyncEnvironment.Qa,
+    environment: widgetStore.widgetConfig.environment ?? AerosyncEnvironment.Qa,
     token: widgetStore.widgetConfig.token,
     theme: isDark.value ? 'dark' : 'light',
     onEvent(event: WidgetEventType) {
