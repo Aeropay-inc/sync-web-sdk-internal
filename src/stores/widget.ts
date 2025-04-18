@@ -12,6 +12,7 @@ export const useWidgetStore = defineStore('widget', () => {
     environment: AerosyncEnvironment.Qa,
     configurationId: '',
     aeroPassUserUuid: '',
+    isEmbeddedFlow: true,
   })
 
   const updateWidgetConfig = (value: WidgetConfigType) => {

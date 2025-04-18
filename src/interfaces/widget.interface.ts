@@ -5,4 +5,5 @@ export interface WidgetConfigType {
   environment: AerosyncEnvironment
   configurationId: string
   aeroPassUserUuid: string
+  isEmbeddedFlow: boolean
 }

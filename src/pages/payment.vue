@@ -12,14 +12,16 @@ let widgetControls: AerosyncWidget | null = null
 function widgetRef() {
   widgetControls = initAeroSyncWidget({
     elementId: 'widgetId',
-    embeddedBankView: {
+    ...(widgetStore.widgetConfig.isEmbeddedFlow)
+    && { embeddedBankView: {
       elementId: 'embeddedId',
       onEmbedded() {
+        // embedded ready
         isSyncReady.value = true
       },
       // width: '572px',
       // height: '348px'
-    },
+    } },
     iframeTitle: 'Connect',
     environment: widgetStore.widgetConfig.environment ?? AerosyncEnvironment.Qa,
     token: widgetStore.widgetConfig.token,
@@ -41,12 +43,18 @@ function widgetRef() {
     },
   })
 }
+function launchAerosyncWidget() {
+  widgetControls?.launch()
+}
 watch(isDark, (newValue) => {
   widgetControls?.toggleTheme(newValue ? 'dark' : 'light')
 })
 onMounted(() => {
   if (widgetStore.isWidgetConfigSet) {
     widgetRef()
+  }
+  if (!widgetStore.widgetConfig.isEmbeddedFlow) {
+    isSyncReady.value = true
   }
 })
 onUnmounted(() => {
@@ -71,7 +79,25 @@ onUnmounted(() => {
               Pay by bank instantly and save 3%
             </div>
           </div>
-          <div id="embeddedId" mdLite:w-xl w-full border border-gray-300 dark:border-gray-700 class="h-[21.875rem]" />
+          <!-- embedded view -->
+          <div
+            v-if="widgetStore.widgetConfig.isEmbeddedFlow" id="embeddedId" mdLite:w-xl w-full border border-gray-300
+            dark:border-gray-700
+            class="h-[21.875rem]"
+          />
+          <!-- regular widget -->
+          <div v-else>
+            <button
+              class="h-48px w-full rounded-md bg-blue-600 px-4 py-2 text-white font-semibold transition-colors sm:w-[550px] dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600"
+              @click="launchAerosyncWidget()"
+            >
+              <div grid="~ flow-col" place-content-center gap-x-3>
+                <div i-carbon:account place-self-center />
+                <div>Link new Bank</div>
+                <div i-carbon-user place-self-center />
+              </div>
+            </button>
+          </div>
           <div id="widgetId" />
 
           <div grid="~ flow-row gap-x-2" xs:grid-flow-col class="xs:cols-[auto_auto_1fr]">

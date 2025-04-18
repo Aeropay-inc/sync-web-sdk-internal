@@ -7,6 +7,7 @@ const widgetStore = useWidgetStore()
 const toast = useToastify()
 const envOptions = Object.values(AerosyncEnvironment)
 const widgetConfigForm = ref({ ...widgetStore.widgetConfig })
+
 function save() {
   widgetStore.updateWidgetConfig(widgetConfigForm.value)
   localStorage.setItem('widgetConfig', JSON.stringify(widgetStore.widgetConfig))
@@ -25,10 +26,12 @@ function save() {
     <div my-4 border-t border-gray-300 dark:border-gray-600 />
 
     <div grid mt-5 max-w-lg gap-y-3>
+      <!-- token -->
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-base text-gray-700 font-medium dark:text-white>Token<span class="text-red-500">*</span></label>
         <TheInput v-model="widgetConfigForm.token" />
       </div>
+      <!-- environment -->
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-base text-gray-700 font-medium dark:text-white>Environment<span class="text-red-500">*</span></label>
         <select
@@ -40,14 +43,29 @@ function save() {
           </option>
         </select>
       </div>
-
+      <!-- config Id -->
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-base text-gray-700 font-medium dark:text-white>Configuration Id</label>
         <TheInput v-model="widgetConfigForm.configurationId" />
       </div>
+      <!-- aeropass Id -->
       <div grid="~ flow-col" auto-cols-fr>
         <label block text-base text-gray-700 font-medium dark:text-white>AeroPassUser Id</label>
         <TheInput v-model="widgetConfigForm.aeroPassUserUuid" disabled cursor-not-allowed bg-gray-300 text-gray-500 />
+      </div>
+      <!-- embedded or normal flow -->
+      <div grid="~ flow-col" auto-cols-fr>
+        <label block text-base text-gray-700 font-medium dark:text-white>Embedded View</label>
+        <div
+          class="grid h-6 w-12 cursor-pointer items-center rounded-full bg-gray-300 p-1 transition-colors"
+          :class="widgetConfigForm.isEmbeddedFlow ? 'bg-green-500' : 'bg-gray-300'"
+          @click="widgetConfigForm.isEmbeddedFlow = !widgetConfigForm.isEmbeddedFlow"
+        >
+          <div
+            class="h-4 w-4 transform rounded-full bg-white shadow-md transition-transform"
+            :class="widgetConfigForm.isEmbeddedFlow ? 'translate-x-6' : 'translate-x-0'"
+          />
+        </div>
       </div>
       <button mt-3 class="h-[38px] w-[150px]" place-self-center text-base btn @click="save">
         Save
