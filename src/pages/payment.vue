@@ -17,11 +17,12 @@ function widgetRef() {
       onEmbedded() {
         isSyncReady.value = true
       },
+      // width: '572px',
+      // height: '348px'
     },
     iframeTitle: 'Connect',
     environment: AerosyncEnvironment.Qa,
     token: widgetStore.widgetConfig.token,
-    aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
     theme: isDark.value ? 'dark' : 'light',
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
@@ -70,7 +71,7 @@ onUnmounted(() => {
               Pay by bank instantly and save 3%
             </div>
           </div>
-          <div id="embeddedId" mdLite:w-xl h-sm w-full border border-gray-300 dark:border-gray-700 />
+          <div id="embeddedId" mdLite:w-xl w-full border border-gray-300 dark:border-gray-700 class="h-[21.875rem]" />
           <div id="widgetId" />
 
           <div grid="~ flow-row gap-x-2" xs:grid-flow-col class="xs:cols-[auto_auto_1fr]">
