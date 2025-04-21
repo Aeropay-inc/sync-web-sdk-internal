@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AerosyncWidget, WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk'
-import { AerosyncEnvironment, initAeroSyncWidget } from 'aerosync-web-sdk'
+import { initAeroSyncWidget } from 'aerosync-web-sdk'
 import { onMounted, onUnmounted } from 'vue'
 import { useToastify } from '~/composables/toast'
 
@@ -23,9 +23,10 @@ function widgetRef() {
       // height: '348px'
     } },
     iframeTitle: 'Connect',
-    environment: widgetStore.widgetConfig.environment ?? AerosyncEnvironment.Qa,
+    environment: widgetStore.widgetConfig.environment,
     token: widgetStore.widgetConfig.token,
     theme: isDark.value ? 'dark' : 'light',
+    consumerId: widgetStore.widgetConfig.configurationId,
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
     },
