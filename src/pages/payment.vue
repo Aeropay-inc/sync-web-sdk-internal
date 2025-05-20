@@ -84,7 +84,7 @@ onUnmounted(() => {
           <div
             v-if="widgetStore.widgetConfig.isEmbeddedFlow" id="embeddedId" mdLite:w-xl w-full border border-gray-300
             dark:border-gray-700
-            class="h-[21.875rem]"
+            class="h-[358px]"
           />
           <!-- regular widget -->
           <div v-else>
