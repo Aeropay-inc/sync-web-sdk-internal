@@ -1,5 +1,4 @@
 import type { WidgetConfigType } from '~/interfaces/widget.interface'
-import { AerosyncEnvironment } from 'aerosync-web-sdk'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useWidgetStore = defineStore('widget', () => {
@@ -7,16 +6,23 @@ export const useWidgetStore = defineStore('widget', () => {
   * Widget attributes
   */
   const isWidgetConfigSet = ref(false)
-  const widgetConfig = ref({
+  const widgetConfig = ref<WidgetConfigType>({
     token: '',
-    environment: AerosyncEnvironment.Qa,
+    environment: 'qa',
     configurationId: '',
     aeroPassUserUuid: '',
     isEmbeddedFlow: true,
+    sdkVersion: 'v111',
+    handleMFA: false,
+    connectionId: '',
+    jobId: '',
   })
 
   const updateWidgetConfig = (value: WidgetConfigType) => {
-    widgetConfig.value = value
+    widgetConfig.value = {
+      ...widgetConfig.value,
+      ...value,
+    }
   }
 
   watch(() => widgetConfig.value.token, (n) => {
