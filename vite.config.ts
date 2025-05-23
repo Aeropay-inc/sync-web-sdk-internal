@@ -140,6 +140,9 @@ export default defineConfig({
 
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
+    includedRoutes() {
+      return [] // disables SSG output — no static pages generated
+    },
     script: 'async',
     formatting: 'minify',
     beastiesOptions: {
