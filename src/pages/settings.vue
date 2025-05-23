@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import type { AeroSyncWebVersions } from '~/interfaces/widget.interface'
 import { useToastify } from '~/composables/toast'
 import { useWidgetStore } from '~/stores/widget'
 
 const widgetStore = useWidgetStore()
 const toast = useToastify()
 const envOptions = ['qa', 'staging', 'sandbox', 'production']
+const aeroSyncWebVersions: AeroSyncWebVersions[] = [
+  { display: 'v1.1.0', key: 'v110' },
+  { display: 'v1.1.1', key: 'v111' },
+  { display: 'v2.0.4', key: 'v204' },
+]
 const widgetConfigForm = ref({ ...widgetStore.widgetConfig })
 
 function save() {
@@ -39,6 +45,18 @@ function save() {
         >
           <option v-for="env in envOptions" :key="env" :value="env" :selected="env === 'qa'" text-gray-500>
             {{ env }}
+          </option>
+        </select>
+      </div>
+      <!-- Web SDK Versions -->
+      <div grid="~ flow-col" auto-cols-fr>
+        <label block text-base text-gray-700 font-medium dark:text-white>Version<span class="text-red-500">*</span></label>
+        <select
+          v-model="widgetConfigForm.sdkVersion" rounded border="~ rounded gray-200 dark:gray-700" bg="transparent" p="x-4 y-2"
+          outline="none active:none"
+        >
+          <option v-for="version in aeroSyncWebVersions" :key="version.key" :value="version.key" :selected="version.key === 'v111'" text-gray-500>
+            {{ version.display }}
           </option>
         </select>
       </div>

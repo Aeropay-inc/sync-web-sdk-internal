@@ -2,8 +2,9 @@ packages: []
 
 catalogs:
   aerosync:
+    aerosync-web-sdk-v110: npm:aerosync-web-sdk@1.1.0
     aerosync-web-sdk-v111: npm:aerosync-web-sdk@1.1.1
-
+    aerosync-web-sdk-v204: npm:aerosync-web-sdk@2.0.4-beta.0
   build:
     '@shikijs/markdown-it': ^3.2.1
     '@unocss/eslint-config': ^66.1.0-beta.7

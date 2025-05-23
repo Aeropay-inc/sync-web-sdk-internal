@@ -6,12 +6,13 @@ export const useWidgetStore = defineStore('widget', () => {
   * Widget attributes
   */
   const isWidgetConfigSet = ref(false)
-  const widgetConfig = ref({
+  const widgetConfig = ref<WidgetConfigType>({
     token: '',
     environment: 'qa',
     configurationId: '',
     aeroPassUserUuid: '',
     isEmbeddedFlow: true,
+    sdkVersion: 'v111',
   })
 
   const updateWidgetConfig = (value: WidgetConfigType) => {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const version = ref('v111')
+const widgetStore = useWidgetStore()
 </script>
 
 <template>
@@ -18,7 +18,7 @@ const version = ref('v111')
     </div>
     <div grid="~ flow-col cols-[auto_1fr]">
       <div i-carbon:3rd-party-connected place-self-center />
-      <RouterLink :to="`/payment/${version}`" block px-4 py-2 text-base hover:bg-indigo-900 dark:hover:bg-indigo-800>
+      <RouterLink :to="`/payment/${widgetStore.widgetConfig.sdkVersion}`" block px-4 py-2 text-base hover:bg-indigo-900 dark:hover:bg-indigo-800>
         Payment
       </RouterLink>
     </div>
