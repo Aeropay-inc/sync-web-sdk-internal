@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { AerosyncWidget, WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk'
-import { initAeroSyncWidget } from 'aerosync-web-sdk'
+import type { AerosyncWidget, WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk-v111'
+import { initAeroSyncWidget } from 'aerosync-web-sdk-v111'
 import { onMounted, onUnmounted } from 'vue'
 import { useToastify } from '~/composables/toast'
 

@@ -1,8 +1,6 @@
-import type { AerosyncEnvironment } from 'aerosync-web-sdk'
-
 export interface WidgetConfigType {
   token: string
-  environment: AerosyncEnvironment
+  environment: string
   configurationId: string
   aeroPassUserUuid: string
   isEmbeddedFlow: boolean

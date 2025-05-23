@@ -20,7 +20,7 @@
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",
-    "aerosync-web-sdk": "file:aerosync-web-sdk-1.1.1.tgz",
+    "aerosync-web-sdk-v111": "catalog:aerosync",
     "nprogress": "catalog:frontend",
     "pinia": "catalog:frontend",
     "vue": "catalog:frontend",
@@ -52,6 +52,7 @@
     "taze": "catalog:dev",
     "typescript": "catalog:dev",
     "unocss": "catalog:build",
+    "unplugin": "catalog:build",
     "unplugin-auto-import": "catalog:build",
     "unplugin-vue-components": "catalog:build",
     "unplugin-vue-macros": "catalog:build",
@@ -67,11 +68,6 @@
     "vite-ssg-sitemap": "catalog:build",
     "vitest": "catalog:dev",
     "vue-tsc": "catalog:dev"
-  },
-  "resolutions": {
-    "unplugin": "catalog:build",
-    "vite": "catalog:build",
-    "vite-plugin-inspect": "catalog:build"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
