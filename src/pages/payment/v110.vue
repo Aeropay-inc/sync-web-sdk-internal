@@ -1,73 +1,66 @@
 <script setup lang="ts">
-import type { AerosyncEnvironment, AerosyncWidget, WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk-v111'
-import { initAeroSyncWidget } from 'aerosync-web-sdk-v111'
-import { onMounted, onUnmounted } from 'vue'
+import type { widget } from 'aerosync-web-sdk-v110'
+import type { EnvironmentV110 } from '~/interfaces/widget.interface'
+import { openWidget } from 'aerosync-web-sdk-v110'
 import { useToastify } from '~/composables/toast'
 
 const widgetStore = useWidgetStore()
 const toast = useToastify()
-const isSyncReady = ref(false)
-let widgetControls: AerosyncWidget | null = null
 
-function widgetRef() {
-  widgetControls = initAeroSyncWidget({
-    elementId: 'widgetId',
-    ...(widgetStore.widgetConfig.isEmbeddedFlow)
-    && { embeddedBankView: {
-      elementId: 'embeddedId',
-      onEmbedded() {
-        // embedded ready
-        isSyncReady.value = true
-      },
-      // width: '572px',
-      // height: '348px'
-    } },
+function getEnvironment(): EnvironmentV110 {
+  return (widgetStore.widgetConfig.environment === 'qa')
+    ? 'dev'
+    : (widgetStore.widgetConfig.environment === 'staging')
+        ? 'staging'
+        : (widgetStore.widgetConfig.environment === 'sandbox')
+            ? 'sandbox'
+            : 'production'
+}
+
+function openAerosyncWidget() {
+  const widgetRef: widget = openWidget({
+    id: 'widget',
     iframeTitle: 'Connect',
-    environment: widgetStore.widgetConfig.environment as AerosyncEnvironment,
+    environment: getEnvironment(),
     token: widgetStore.widgetConfig.token,
-    theme: isDark.value ? 'dark' : 'light',
+    style: {
+      width: '375px',
+      height: '688px',
+      bgColor: '#000000',
+      opacity: 0.7,
+    },
+    handleMFA: widgetStore.widgetConfig.handleMFA,
+    jobId: widgetStore.widgetConfig.jobId,
+    userId: widgetStore.widgetConfig.connectionId,
     consumerId: widgetStore.widgetConfig.configurationId,
-    onEvent(event: WidgetEventType) {
-      toast.info(`Sync onevent: ${event.payload.pageTitle}`)
+    onEvent(event: object, type: string) {
+      toast.info(`Sync onevent: ${JSON.stringify(event)} | type: ${type}`)
+      console.log('onEvent', JSON.stringify(event))
     },
     onLoad() {
       toast.info('Sync onload')
+      console.log('onLoad')
     },
-    onSuccess(event: WidgetEventSuccessType) {
+    onSuccess(event: object) {
       toast.success(`Sync onsuccess: ${JSON.stringify(event)}`)
+
+      console.log('onSuccess', JSON.stringify(event))
     },
     onClose() {
       toast.info(`Sync onclose`)
     },
-    onError(event: string) {
-      console.log('onError', event)
+    onError(event: object) {
+      console.log('onError', JSON.stringify(event))
     },
   })
+  widgetRef.launch()
 }
-function launchAerosyncWidget() {
-  widgetControls?.launch()
-}
-watch(isDark, (newValue) => {
-  widgetControls?.toggleTheme(newValue ? 'dark' : 'light')
-})
-onMounted(() => {
-  if (widgetStore.isWidgetConfigSet) {
-    widgetRef()
-  }
-  if (!widgetStore.widgetConfig.isEmbeddedFlow) {
-    isSyncReady.value = true
-  }
-})
-onUnmounted(() => {
-  widgetControls?.destroy()
-})
 </script>
 
 <template>
   <section grid h-full>
     <div v-if="widgetStore.isWidgetConfigSet" grid>
-      <TheSpinner v-if="!isSyncReady" h-10 w-10 place-self-center />
-      <div v-show="isSyncReady" mdLite:justify-items-center grid place-items-start gap-x-3 sm:grid-flow-row xl:grid-flow-col>
+      <div mdLite:justify-items-center grid place-items-start gap-x-3 sm:grid-flow-row xl:grid-flow-col>
         <!-- select payment -->
         <div mdLite:w-auto grid mt-3 w-full gap-y-5>
           <div text-xl>
@@ -80,17 +73,11 @@ onUnmounted(() => {
               Pay by bank instantly and save 3%
             </div>
           </div>
-          <!-- embedded view -->
-          <div
-            v-if="widgetStore.widgetConfig.isEmbeddedFlow" id="embeddedId" mdLite:w-xl w-full border border-gray-300
-            dark:border-gray-700
-            class="h-[358px]"
-          />
           <!-- regular widget -->
-          <div v-else>
+          <div>
             <button
               class="h-48px w-full rounded-md bg-blue-600 px-4 py-2 text-white font-semibold transition-colors sm:w-[550px] dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600"
-              @click="launchAerosyncWidget()"
+              @click="openAerosyncWidget()"
             >
               <div grid="~ flow-col" place-content-center gap-x-3>
                 <div i-carbon:account place-self-center />
@@ -99,7 +86,7 @@ onUnmounted(() => {
               </div>
             </button>
           </div>
-          <div id="widgetId" />
+          <div id="widget" />
 
           <div grid="~ flow-row gap-x-2" xs:grid-flow-col class="xs:cols-[auto_auto_1fr]">
             <input type="radio" disabled>

@@ -25,6 +25,9 @@ function widgetRef() {
     iframeTitle: 'Connect',
     environment: widgetStore.widgetConfig.environment as AerosyncEnvironment,
     token: widgetStore.widgetConfig.token,
+    handleMFA: widgetStore.widgetConfig.handleMFA,
+    jobId: widgetStore.widgetConfig.jobId,
+    userId: widgetStore.widgetConfig.connectionId,
     theme: isDark.value ? 'dark' : 'light',
     consumerId: widgetStore.widgetConfig.configurationId,
     onEvent(event: WidgetEventType) {
