@@ -37,6 +37,7 @@ function widgetRef() {
       toast.info('Sync onload')
     },
     onSuccess(event: WidgetEventSuccessType) {
+      console.log('onSuccess', JSON.stringify(event))
       toast.success(`Sync onsuccess: ${JSON.stringify(event)}`)
     },
     onClose() {
@@ -118,16 +119,19 @@ onUnmounted(() => {
           <div grid="~ flow-row" gap-x-3 sm:grid-flow-col>
             <div place-self-center>
               <div text-xl>
-                2023 Cadillac CT5
+                KTM RC 200
               </div>
               <div text-sm>
-                Premium Luxury 4D
+                200 cc liquid-cooled
               </div>
               <div text-sm>
-                Sedan Gas
+                single-cylinder
+              </div>
+              <div text-sm>
+                four-stroke engine
               </div>
             </div>
-            <img src="/assets/images/cadillac.png" alt="product" w-150px place-self-center sm:w-200px>
+            <img src="/assets/images/ktm.png" alt="product" w-150px place-self-center sm:w-200px>
           </div>
 
           <div grid="~ flow-row" gap-x-2 sm:grid-flow-col>

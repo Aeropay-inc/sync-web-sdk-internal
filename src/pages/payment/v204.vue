@@ -101,7 +101,7 @@ function openAerosyncWidget() {
                 Sedan Gas
               </div>
             </div>
-            <img src="/assets/images/cadillac.png" alt="product" w-150px place-self-center sm:w-200px>
+            <img src="/assets/images/ktm.png" alt="product" w-150px place-self-center sm:w-200px>
           </div>
 
           <div grid="~ flow-row" gap-x-2 sm:grid-flow-col>
