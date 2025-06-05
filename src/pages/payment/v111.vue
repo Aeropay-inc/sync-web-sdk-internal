@@ -32,6 +32,7 @@ function widgetRef() {
     consumerId: widgetStore.widgetConfig.configurationId,
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
+      console.log('onEvent', JSON.stringify(event))
     },
     onLoad() {
       toast.info('Sync onload')

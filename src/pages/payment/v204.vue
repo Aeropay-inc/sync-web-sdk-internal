@@ -25,7 +25,7 @@ function openAerosyncWidget() {
     configurationId: widgetStore.widgetConfig.configurationId,
     onEvent(event: object, type: string) {
       toast.info(`Sync onevent: ${JSON.stringify(event)} | type: ${type}`)
-      console.log('onEvent', JSON.stringify(event))
+      console.log('onEvent', JSON.stringify(event), JSON.stringify(type))
     },
     onLoad() {
       toast.info('Sync onload')
