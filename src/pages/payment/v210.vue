@@ -43,6 +43,7 @@ function widgetRef() {
       toast.success(`Sync onsuccess: ${JSON.stringify(event)}`)
     },
     onClose() {
+      console.log('on close event fired...')
       toast.info(`Sync onclose`)
     },
     onError(event: string) {
