@@ -20,7 +20,7 @@
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",
-    "aerosync-web-sdk": "file:aerosync-web-sdk-2.1.1.tgz",
+    "aerosync-web-sdk": "file:aerosync-web-sdk-2.1.2.tgz",
     "aerosync-web-sdk-v110": "catalog:aerosync",
     "aerosync-web-sdk-v111": "catalog:aerosync",
     "aerosync-web-sdk-v204": "catalog:aerosync",
