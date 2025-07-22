@@ -27,10 +27,11 @@ function widgetRef() {
     token: widgetStore.widgetConfig.token,
     handleMFA: widgetStore.widgetConfig.handleMFA,
     jobId: widgetStore.widgetConfig.jobId,
-    connectionId: widgetStore.widgetConfig.connectionId,
+    // connectionId: widgetStore.widgetConfig.connectionId,
     theme: isDark.value ? 'dark' : 'light',
-    configurationId: widgetStore.widgetConfig.configurationId,
-    aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
+    // configurationId: widgetStore.widgetConfig.configurationId,
+    // aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
+    handleOAuthManually: true,
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
       console.log('onEvent', JSON.stringify(event))
