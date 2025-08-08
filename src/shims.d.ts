@@ -1,5 +1,8 @@
 declare interface Window {
   // extend the window
+  aerosync?: {
+    initWidget: (config: any) => any
+  }
 }
 
 // with unplugin-vue-markdown, markdown files can be treated as Vue components

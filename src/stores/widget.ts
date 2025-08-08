@@ -12,7 +12,7 @@ export const useWidgetStore = defineStore('widget', () => {
     configurationId: '',
     aeroPassUserUuid: '',
     isEmbeddedFlow: true,
-    sdkVersion: 'v111',
+    sdkVersion: 'v113',
     handleMFA: false,
     connectionId: '',
     jobId: '',

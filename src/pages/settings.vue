@@ -54,7 +54,7 @@ function save() {
             v-model="widgetConfigForm.sdkVersion" rounded border="~ rounded gray-200 dark:gray-700" bg="transparent" p="x-4 y-2"
             outline="none active:none"
           >
-            <option v-for="version in aeroSyncWebVersions" :key="version.key" :value="version.key" :selected="version.key === 'v111'" text-gray-500>
+            <option v-for="version in aeroSyncWebVersions" :key="version.key" :value="version.key" :selected="version.key === 'v113'" text-gray-500>
               {{ version.display }}
             </option>
           </select>
@@ -101,6 +101,20 @@ function save() {
           </div>
         </div>
         <!-- handle MFA? -->
+        <div grid="~ flow-col" auto-cols-fr gap-x-3>
+          <label block place-self-end text-base text-gray-700 font-medium dark:text-white>Handle MFA</label>
+          <div
+            class="grid h-6 w-12 cursor-pointer items-center rounded-full bg-gray-300 p-1 transition-colors"
+            :class="widgetConfigForm.handleMFA ? 'bg-green-500' : 'bg-gray-300'"
+            @click="widgetConfigForm.handleMFA = !widgetConfigForm.handleMFA"
+          >
+            <div
+              class="h-4 w-4 transform rounded-full bg-white shadow-md transition-transform"
+              :class="widgetConfigForm.handleMFA ? 'translate-x-6' : 'translate-x-0'"
+            />
+          </div>
+        </div>
+        <!-- CDN or NPM -->
         <div grid="~ flow-col" auto-cols-fr gap-x-3>
           <label block place-self-end text-base text-gray-700 font-medium dark:text-white>Handle MFA</label>
           <div
