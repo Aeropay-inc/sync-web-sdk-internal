@@ -85,7 +85,7 @@ function save() {
         </div>
       </div>
 
-      <div grid grid-auto-rows-min gap-y-3>
+      <div grid grid-auto-rows-min gap-y-6>
         <!-- embedded or normal flow -->
         <div grid="~ flow-col" auto-cols-fr gap-x-3>
           <label block place-self-end text-base text-gray-700 font-medium dark:text-white>Embedded View</label>
@@ -116,15 +116,15 @@ function save() {
         </div>
         <!-- CDN or NPM -->
         <div grid="~ flow-col" auto-cols-fr gap-x-3>
-          <label block place-self-end text-base text-gray-700 font-medium dark:text-white>Handle MFA</label>
+          <label block place-self-end text-base text-gray-700 font-medium dark:text-white>Use CDN</label>
           <div
             class="grid h-6 w-12 cursor-pointer items-center rounded-full bg-gray-300 p-1 transition-colors"
-            :class="widgetConfigForm.handleMFA ? 'bg-green-500' : 'bg-gray-300'"
-            @click="widgetConfigForm.handleMFA = !widgetConfigForm.handleMFA"
+            :class="widgetConfigForm.CDN ? 'bg-green-500' : 'bg-gray-300'"
+            @click="widgetConfigForm.CDN = !widgetConfigForm.CDN"
           >
             <div
               class="h-4 w-4 transform rounded-full bg-white shadow-md transition-transform"
-              :class="widgetConfigForm.handleMFA ? 'translate-x-6' : 'translate-x-0'"
+              :class="widgetConfigForm.CDN ? 'translate-x-6' : 'translate-x-0'"
             />
           </div>
         </div>

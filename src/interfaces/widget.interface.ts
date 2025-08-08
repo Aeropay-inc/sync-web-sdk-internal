@@ -6,12 +6,13 @@ export interface WidgetConfigType {
   isEmbeddedFlow: boolean
   sdkVersion: AeroSyncWebVersionsKey
   handleMFA: boolean
+  CDN: boolean
   jobId: string
   connectionId: string
 }
 
-type AeroSyncWebVersionsKey = 'v113' | 'v212'
-type AeroSyncWebVersionsDisplay = 'v1.1.3' | 'v2.1.2'
+export type AeroSyncWebVersionsKey = 'v113' | 'v212'
+export type AeroSyncWebVersionsDisplay = 'v1.1.3' | 'v2.1.2'
 
 export type Environment = 'qa' | 'staging' | 'sandbox' | 'production'
 export type EnvironmentV110 = 'dev' | 'staging' | 'sandbox' | 'production'

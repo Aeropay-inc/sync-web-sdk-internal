@@ -1,7 +1,8 @@
+import type { AeroSyncWebVersionsKey } from '~/interfaces/widget.interface'
 import { onUnmounted, ref } from 'vue'
 
 interface CdnLoaderOptions {
-  version: string
+  version: AeroSyncWebVersionsKey
   onLoad?: () => void
   onError?: (error: Event) => void
 }
@@ -14,7 +15,9 @@ export function useCdnLoader() {
 
   const loadCdnScript = async (options: CdnLoaderOptions): Promise<void> => {
     const { version, onLoad, onError } = options
-    const scriptSrc = `/cdn/aerosync-widget-v${version}.js`
+    // convert version to display version
+    const semanticVersion = `v${version.replace('v', '').split('').join('.')}`
+    const scriptSrc = `/cdn/aerosync-widget-${semanticVersion}.js`
 
     // Check if script is already loaded
     if (loadedScripts.has(scriptSrc)) {

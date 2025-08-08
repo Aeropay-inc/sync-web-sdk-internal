@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import type { AerosyncEnvironment, AerosyncWidget, WidgetEventSuccessType, WidgetEventType } from 'aerosync-web-sdk'
-import { initAeroSyncWidget } from 'aerosync-web-sdk'
+import type { AerosyncEnvironment, AerosyncWidget, WidgetEventSuccessType, WidgetEventType, WidgetThemeType } from 'aerosync-web-sdk-v212'
 import { onMounted, onUnmounted } from 'vue'
 import { useToastify } from '~/composables/toast'
 
 const widgetStore = useWidgetStore()
 const toast = useToastify()
 const isSyncReady = ref(false)
+const { loadCdnScript } = useCdnLoader()
+
 let widgetControls: AerosyncWidget | null = null
 
-function widgetRef() {
-  widgetControls = initAeroSyncWidget({
+function getWidgetConfigs() {
+  return {
     elementId: 'widgetId',
     ...(widgetStore.widgetConfig.isEmbeddedFlow)
     && { embeddedBankView: {
@@ -28,10 +29,9 @@ function widgetRef() {
     handleMFA: widgetStore.widgetConfig.handleMFA,
     jobId: widgetStore.widgetConfig.jobId,
     // connectionId: widgetStore.widgetConfig.connectionId,
-    theme: isDark.value ? 'dark' : 'light',
+    theme: isDark.value ? 'dark' : 'light' as WidgetThemeType,
     // configurationId: widgetStore.widgetConfig.configurationId,
-    // aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
-    handleOAuthManually: true,
+    aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
       console.log('onEvent', JSON.stringify(event))
@@ -50,17 +50,39 @@ function widgetRef() {
     onError(event: string) {
       console.log('onError', event)
     },
-  })
+  }
 }
 function launchAerosyncWidget() {
+  console.log('widgetControls', widgetControls)
   widgetControls?.launch()
+}
+async function initializeAeroSyncWidgetViaNPM() {
+  const { initAeroSyncWidget } = await import('aerosync-web-sdk-v212')
+  widgetControls = initAeroSyncWidget(getWidgetConfigs())
+  console.log('Widget ready using NPM...')
+}
+function initializeAeroSyncWidgetViaCDN() {
+  loadCdnScript({
+    version: widgetStore.widgetConfig.sdkVersion,
+    onLoad: () => {
+      widgetControls = window?.aerosync?.initWidget(getWidgetConfigs())
+      console.log('Widget ready using CDN...')
+    },
+  })
 }
 watch(isDark, (newValue) => {
   widgetControls?.toggleTheme(newValue ? 'dark' : 'light')
 })
 onMounted(() => {
   if (widgetStore.isWidgetConfigSet) {
-    widgetRef()
+    // Load via CDN
+    if (widgetStore.widgetConfig.CDN) {
+      initializeAeroSyncWidgetViaCDN()
+    }
+    else {
+      // Load via NPM
+      initializeAeroSyncWidgetViaNPM()
+    }
   }
   if (!widgetStore.widgetConfig.isEmbeddedFlow) {
     isSyncReady.value = true
