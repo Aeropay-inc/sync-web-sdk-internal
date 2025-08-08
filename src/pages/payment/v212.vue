@@ -53,7 +53,6 @@ function getWidgetConfigs() {
   }
 }
 function launchAerosyncWidget() {
-  console.log('widgetControls', widgetControls)
   widgetControls?.launch()
 }
 async function initializeAeroSyncWidgetViaNPM() {

@@ -54,7 +54,7 @@ function save() {
             v-model="widgetConfigForm.sdkVersion" rounded border="~ rounded gray-200 dark:gray-700" bg="transparent" p="x-4 y-2"
             outline="none active:none"
           >
-            <option v-for="version in aeroSyncWebVersions" :key="version.key" :value="version.key" :selected="version.key === 'v113'" text-gray-500>
+            <option v-for="version in aeroSyncWebVersions" :key="version.key" :value="version.key" :selected="version.key === 'v212'" text-gray-500>
               {{ version.display }}
             </option>
           </select>
