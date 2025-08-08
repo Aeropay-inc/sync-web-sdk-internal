@@ -7,10 +7,8 @@ const widgetStore = useWidgetStore()
 const toast = useToastify()
 const envOptions = ['qa', 'staging', 'sandbox', 'production']
 const aeroSyncWebVersions: AeroSyncWebVersions[] = [
-  { display: 'v1.1.0', key: 'v110' },
-  { display: 'v1.1.1', key: 'v111' },
-  { display: 'v2.0.4', key: 'v204' },
-  { display: 'v2.1.0', key: 'v210' },
+  { display: 'v1.1.3', key: 'v113' },
+  { display: 'v2.1.2', key: 'v212' },
 ]
 const widgetConfigForm = ref({ ...widgetStore.widgetConfig })
 function save() {

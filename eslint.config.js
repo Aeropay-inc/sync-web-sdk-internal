@@ -6,6 +6,9 @@ export default antfu(
     unocss: true,
     formatters: true,
     pnpm: true,
+    ignores: [
+      'public/cdn/**/*',
+    ],
     rules: {
       'no-console': 'off',
     },
