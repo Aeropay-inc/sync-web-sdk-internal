@@ -7,10 +7,8 @@ const widgetStore = useWidgetStore()
 const toast = useToastify()
 const envOptions = ['qa', 'staging', 'sandbox', 'production']
 const aeroSyncWebVersions: AeroSyncWebVersions[] = [
-  { display: 'v1.1.0', key: 'v110' },
-  { display: 'v1.1.1', key: 'v111' },
-  { display: 'v2.0.4', key: 'v204' },
-  { display: 'v2.1.0', key: 'v210' },
+  { display: 'v1.1.3', key: 'v113' },
+  { display: 'v2.1.2', key: 'v212' },
 ]
 const widgetConfigForm = ref({ ...widgetStore.widgetConfig })
 function save() {
@@ -56,7 +54,7 @@ function save() {
             v-model="widgetConfigForm.sdkVersion" rounded border="~ rounded gray-200 dark:gray-700" bg="transparent" p="x-4 y-2"
             outline="none active:none"
           >
-            <option v-for="version in aeroSyncWebVersions" :key="version.key" :value="version.key" :selected="version.key === 'v111'" text-gray-500>
+            <option v-for="version in aeroSyncWebVersions" :key="version.key" :value="version.key" :selected="version.key === 'v212'" text-gray-500>
               {{ version.display }}
             </option>
           </select>
@@ -87,7 +85,7 @@ function save() {
         </div>
       </div>
 
-      <div grid grid-auto-rows-min gap-y-3>
+      <div grid grid-auto-rows-min gap-y-6>
         <!-- embedded or normal flow -->
         <div grid="~ flow-col" auto-cols-fr gap-x-3>
           <label block place-self-end text-base text-gray-700 font-medium dark:text-white>Embedded View</label>
@@ -113,6 +111,20 @@ function save() {
             <div
               class="h-4 w-4 transform rounded-full bg-white shadow-md transition-transform"
               :class="widgetConfigForm.handleMFA ? 'translate-x-6' : 'translate-x-0'"
+            />
+          </div>
+        </div>
+        <!-- CDN or NPM -->
+        <div grid="~ flow-col" auto-cols-fr gap-x-3>
+          <label block place-self-end text-base text-gray-700 font-medium dark:text-white>Use CDN</label>
+          <div
+            class="grid h-6 w-12 cursor-pointer items-center rounded-full bg-gray-300 p-1 transition-colors"
+            :class="widgetConfigForm.CDN ? 'bg-green-500' : 'bg-gray-300'"
+            @click="widgetConfigForm.CDN = !widgetConfigForm.CDN"
+          >
+            <div
+              class="h-4 w-4 transform rounded-full bg-white shadow-md transition-transform"
+              :class="widgetConfigForm.CDN ? 'translate-x-6' : 'translate-x-0'"
             />
           </div>
         </div>
