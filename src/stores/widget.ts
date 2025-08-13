@@ -14,6 +14,7 @@ export const useWidgetStore = defineStore('widget', () => {
     isEmbeddedFlow: true,
     sdkVersion: 'v113',
     CDN: false,
+    widgetLaunchType: 'host',
     handleMFA: false,
     connectionId: '',
     jobId: '',

@@ -9,7 +9,9 @@ const envOptions = ['qa', 'staging', 'sandbox', 'production']
 const aeroSyncWebVersions: AeroSyncWebVersions[] = [
   { display: 'v1.1.3', key: 'v113' },
   { display: 'v2.1.2', key: 'v212' },
+  { display: 'v2.1.4', key: 'v214' },
 ]
+const widgetLaunchType = ['host', 'systemBrowser']
 const widgetConfigForm = ref({ ...widgetStore.widgetConfig })
 function save() {
   widgetStore.updateWidgetConfig(widgetConfigForm.value)
@@ -44,6 +46,18 @@ function save() {
           >
             <option v-for="env in envOptions" :key="env" :value="env" :selected="env === 'qa'" text-gray-500>
               {{ env }}
+            </option>
+          </select>
+        </div>
+        <!-- Widget Launch type -->
+        <div grid="~ flow-col" auto-cols-fr>
+          <label block text-base text-gray-700 font-medium dark:text-white>Widget Launch Type<span class="text-red-500">*</span></label>
+          <select
+            v-model="widgetConfigForm.widgetLaunchType" rounded border="~ rounded gray-200 dark:gray-700" bg="transparent" p="x-4 y-2"
+            outline="none active:none"
+          >
+            <option v-for="type in widgetLaunchType" :key="type" :value="type" :selected="type === 'host'" text-gray-500>
+              {{ type }}
             </option>
           </select>
         </div>

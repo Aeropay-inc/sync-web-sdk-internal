@@ -174,6 +174,9 @@ importers:
       '@vueuse/core':
         specifier: catalog:frontend
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
+      aerosync-web-sdk:
+        specifier: file:aerosync-web-sdk-2.1.4.tgz
+        version: file:aerosync-web-sdk-2.1.4.tgz
       aerosync-web-sdk-v113:
         specifier: catalog:aerosync
         version: aerosync-web-sdk@1.1.3
@@ -2448,6 +2451,10 @@ packages:
 
   aerosync-web-sdk@2.1.2:
     resolution: {integrity: sha512-fg6t8BtFuigg+BujWoBr6bnm9IrqRplYaUdT7xezcvi1H89YbQ/MaUsrs94WpiGShImiou60IlvuVXU7L2IANA==}
+
+  aerosync-web-sdk@file:aerosync-web-sdk-2.1.4.tgz:
+    resolution: {integrity: sha512-qLEkX5NrHpQ3UCZDxGt1v9vbDlZZGFrkjhwZJgXougYYHyW9Bg8gjHPoSO6poAXpSRrIEguY3xE9pwiGtIESlQ==, tarball: file:aerosync-web-sdk-2.1.4.tgz}
+    version: 2.1.4
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -8674,6 +8681,8 @@ snapshots:
   aerosync-web-sdk@1.1.3: {}
 
   aerosync-web-sdk@2.1.2: {}
+
+  aerosync-web-sdk@file:aerosync-web-sdk-2.1.4.tgz: {}
 
   agent-base@7.1.4: {}
 
