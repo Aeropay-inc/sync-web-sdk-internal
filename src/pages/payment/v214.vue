@@ -31,6 +31,7 @@ function getWidgetConfigs() {
     jobId: widgetStore.widgetConfig.jobId,
     userId: widgetStore.widgetConfig.connectionId,
     widgetLaunchType: widgetStore.widgetConfig.widgetLaunchType,
+    aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
     theme: isDark.value ? 'dark' : 'light' as WidgetThemeType,
     consumerId: widgetStore.widgetConfig.configurationId,
     onEvent(event: WidgetEventType) {
