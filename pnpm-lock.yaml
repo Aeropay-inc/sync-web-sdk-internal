@@ -2453,7 +2453,7 @@ packages:
     resolution: {integrity: sha512-fg6t8BtFuigg+BujWoBr6bnm9IrqRplYaUdT7xezcvi1H89YbQ/MaUsrs94WpiGShImiou60IlvuVXU7L2IANA==}
 
   aerosync-web-sdk@file:aerosync-web-sdk-2.1.4.tgz:
-    resolution: {integrity: sha512-qLEkX5NrHpQ3UCZDxGt1v9vbDlZZGFrkjhwZJgXougYYHyW9Bg8gjHPoSO6poAXpSRrIEguY3xE9pwiGtIESlQ==, tarball: file:aerosync-web-sdk-2.1.4.tgz}
+    resolution: {integrity: sha512-+u8Nr3aU/0mpXdtav2sRltzhKMoh0K6OJUxPvLDqoxOxfigSuDxgJO3UjPdt63uHsSB1w25W2rLkSn0yJZIXUQ==, tarball: file:aerosync-web-sdk-2.1.4.tgz}
     version: 2.1.4
 
   agent-base@7.1.4:
