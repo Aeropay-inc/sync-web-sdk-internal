@@ -29,7 +29,7 @@ function getWidgetConfigs() {
     token: widgetStore.widgetConfig.token,
     handleMFA: widgetStore.widgetConfig.handleMFA,
     jobId: widgetStore.widgetConfig.jobId,
-    userId: widgetStore.widgetConfig.connectionId,
+    connectionId: widgetStore.widgetConfig.connectionId,
     widgetLaunchType: widgetStore.widgetConfig.widgetLaunchType,
     aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
     theme: isDark.value ? 'dark' : 'light' as WidgetThemeType,

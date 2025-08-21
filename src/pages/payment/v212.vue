@@ -28,9 +28,9 @@ function getWidgetConfigs() {
     token: widgetStore.widgetConfig.token,
     handleMFA: widgetStore.widgetConfig.handleMFA,
     jobId: widgetStore.widgetConfig.jobId,
-    // connectionId: widgetStore.widgetConfig.connectionId,
+    connectionId: widgetStore.widgetConfig.connectionId,
     theme: isDark.value ? 'dark' : 'light' as WidgetThemeType,
-    // configurationId: widgetStore.widgetConfig.configurationId,
+    configurationId: widgetStore.widgetConfig.configurationId,
     aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
