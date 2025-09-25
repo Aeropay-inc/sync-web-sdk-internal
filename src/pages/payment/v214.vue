@@ -33,7 +33,7 @@ function getWidgetConfigs() {
     widgetLaunchType: widgetStore.widgetConfig.widgetLaunchType,
     aeroPassUserUuid: widgetStore.widgetConfig.aeroPassUserUuid,
     theme: isDark.value ? 'dark' : 'light' as WidgetThemeType,
-    consumerId: widgetStore.widgetConfig.configurationId,
+    configurationId: widgetStore.widgetConfig.configurationId,
     onEvent(event: WidgetEventType) {
       toast.info(`Sync onevent: ${event.payload.pageTitle}`)
       console.log('onEvent', JSON.stringify(event))
