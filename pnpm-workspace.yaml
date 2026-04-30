@@ -1,9 +1,11 @@
 packages: []
 
+catalog:
 catalogs:
   aerosync:
     aerosync-web-sdk-v113: npm:aerosync-web-sdk@1.1.3
     aerosync-web-sdk-v212: npm:aerosync-web-sdk@2.1.2
+    aerosync-web-sdk-v214: npm:aerosync-web-sdk@2.1.4
   build:
     '@shikijs/markdown-it': 3.2.1
     '@unocss/eslint-config': 66.1.0-beta.7
@@ -27,7 +29,6 @@ catalogs:
     vite-plugin-vue-layouts: 0.11.0
     vite-ssg: 26.0.0
     vite-ssg-sitemap: 0.8.1
-
   dev:
     '@antfu/eslint-config': 4.11.0
     '@iconify-json/carbon': 1.2.8

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { AerosyncEnvironment, AerosyncWidget, WidgetEventSuccessType, WidgetEventType, WidgetThemeType } from 'aerosync-web-sdk'
-import { initAeroSyncWidget } from 'aerosync-web-sdk'
+import type { AerosyncEnvironment, AerosyncWidget, WidgetEventSuccessType, WidgetEventType, WidgetThemeType } from 'aerosync-web-sdk-v214'
+import { initAeroSyncWidget } from 'aerosync-web-sdk-v214'
 import { onMounted, onUnmounted } from 'vue'
 import { useToastify } from '~/composables/toast'
 
@@ -21,8 +21,6 @@ function getWidgetConfigs() {
         // embedded ready
         isSyncReady.value = true
       },
-      // width: '572px',
-      // height: '348px'
     } },
     iframeTitle: 'Connect',
     environment: widgetStore.widgetConfig.environment as AerosyncEnvironment,
@@ -182,5 +180,5 @@ onUnmounted(() => {
       meta:
           requireAuth: true
           layout: false
-          title: v1.1.1
+          title: v2.1.4
   </route>

@@ -12,8 +12,8 @@ export interface WidgetConfigType {
   connectionId: string
 }
 
-export type AeroSyncWebVersionsKey = 'v113' | 'v212' | 'v214'
-export type AeroSyncWebVersionsDisplay = 'v1.1.3' | 'v2.1.2' | 'v2.1.4'
+export type AeroSyncWebVersionsKey = 'v113' | 'v212' | 'v214' | 'v216'
+export type AeroSyncWebVersionsDisplay = 'v1.1.3' | 'v2.1.2' | 'v2.1.4' | 'v2.1.6'
 
 export type WidgetLaunchType = 'host' | 'systemBrowser'
 
