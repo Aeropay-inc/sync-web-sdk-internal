@@ -189,6 +189,9 @@ importers:
       aerosync-web-sdk-v214:
         specifier: catalog:aerosync
         version: aerosync-web-sdk@2.1.4
+      aerosync-web-sdk-v220:
+        specifier: file:aerosync-web-sdk-2.2.0.tgz
+        version: aerosync-web-sdk@file:aerosync-web-sdk-2.2.0.tgz
       nprogress:
         specifier: catalog:frontend
         version: 0.2.0
@@ -2464,6 +2467,10 @@ packages:
   aerosync-web-sdk@file:aerosync-web-sdk-2.1.6.tgz:
     resolution: {integrity: sha512-CaWDkjZutJTuva1OZT8p4sCW0VBf3/eblefY403S6WEnfV9zXKsJRc3mX9sVZ7HNzdpEmVEuwPHTYWp4Y0oeGg==, tarball: file:aerosync-web-sdk-2.1.6.tgz}
     version: 2.1.6
+
+  aerosync-web-sdk@file:aerosync-web-sdk-2.2.0.tgz:
+    resolution: {integrity: sha512-myZ63VsGpDTa8gG/8FZcYRP7QGJD68/Lyc/Nz2BOJf7L+Hhxo1L0Dvy0PuC8C5Xbzfa4N1N9vOCl2X7vhcAU7A==, tarball: file:aerosync-web-sdk-2.2.0.tgz}
+    version: 2.2.0
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -8694,6 +8701,8 @@ snapshots:
   aerosync-web-sdk@2.1.4: {}
 
   aerosync-web-sdk@file:aerosync-web-sdk-2.1.6.tgz: {}
+
+  aerosync-web-sdk@file:aerosync-web-sdk-2.2.0.tgz: {}
 
   agent-base@7.1.4: {}
 

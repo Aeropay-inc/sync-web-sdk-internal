@@ -11,6 +11,7 @@ const aeroSyncWebVersions: AeroSyncWebVersions[] = [
   { display: 'v2.1.2', key: 'v212' },
   { display: 'v2.1.4', key: 'v214' },
   { display: 'v2.1.6', key: 'v216' },
+  { display: 'v2.2.0', key: 'v220' },
 ]
 const widgetLaunchType = ['host', 'systemBrowser']
 const widgetConfigForm = ref({ ...widgetStore.widgetConfig })

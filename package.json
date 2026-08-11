@@ -24,6 +24,7 @@
     "aerosync-web-sdk-v113": "catalog:aerosync",
     "aerosync-web-sdk-v212": "catalog:aerosync",
     "aerosync-web-sdk-v214": "catalog:aerosync",
+    "aerosync-web-sdk-v220": "file:aerosync-web-sdk-2.2.0.tgz",
     "nprogress": "catalog:frontend",
     "pinia": "catalog:frontend",
     "vue": "catalog:frontend",
